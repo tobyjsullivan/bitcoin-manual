@@ -67,7 +67,9 @@ tx.addInput(txnId, txnIndex)
 // You only need the public wallet address of the transfer destination.
 // This means you can send coins to anybody without needing any knowledge of 
 // their private key.
-var destWallet = '1Gj1VK5yNwmYF2tVtQVpR3zBcjnb5oK9r4'
+var destWallet = '1Gj1VK5yNwmYF2tVtQVpR3zBcjnb5oK9r4' 
+// Feel free to send "thank you" coins to this address if you found this guide
+// helpful.
 
 // The exact amount to transfer is in Satoshis.
 // A Satoshi is one hundred millionth of a single bitcoin (0.00000001 BTC).
