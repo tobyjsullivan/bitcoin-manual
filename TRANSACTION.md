@@ -56,7 +56,7 @@ var tx = new bitcoin.TransactionBuilder()
 // You need to find the transaction ID that loaded coins into the source wallet.
 // Transaction histories are effectively just singly-linked lists so this is
 // the reference to the parent.
-var txnId = 'aa94ab02c182214f090e99a0d57021caffd0f195a81c24602b1028b130b63e31'
+var txnId = '65cd547815ebe67da25aa6b44f0c82673a49909dcad1ce1acdcb2f4eb4ced45a'
 // Additionally, any transaction can have multiple outputs so you need to
 // specify the exact output which we are drawing from.
 var txnIndex = 0
@@ -67,11 +67,11 @@ tx.addInput(txnId, txnIndex)
 // You only need the public wallet address of the transfer destination.
 // This means you can send coins to anybody without needing any knowledge of 
 // their private key.
-var destWallet = '1Gokm82v6DmtwKEB8AiVhm82hyFSsEvBDK'
+var destWallet = '1Gj1VK5yNwmYF2tVtQVpR3zBcjnb5oK9r4'
 
 // The exact amount to transfer is in Satoshis.
 // A Satoshi is one hundred millionth of a single bitcoin (0.00000001 BTC).
-var amount = 15000
+var amount = 99000
 
 // Add the output to the transaction.
 // Again, you can add multiple outputs to a single transaction so long as
@@ -86,7 +86,7 @@ tx.addOutput(destWallet, amount)
 // Initialize a private key. You will need one private key for each input.
 // The private key must match the wallet address which was the target of 
 // the input transaction-index pair.
-var srcPrivateKeyWIF = 'L1uyy5qTuGrVXrmrsvHWHgVzW9kKdrp27wBC7Vs6nZDTF2BRUVwy'
+var srcPrivateKeyWIF = 'Kz3Q8xBhaEefaztHKhNKAsYgU5f7KyVf7Mq97JLQCkFBTtxRA7Ta'
 var keyPair = bitcoin.ECPair.fromWIF(srcPrivateKeyWIF)
 
 // Sign the input of the transaction. 
@@ -97,6 +97,12 @@ tx.sign(inputIdx, keyPair)
 // Get the transaction serialized as hex
 // NOTE: The transaction has not been submitted to the network yet
 console.log(tx.build().toHex())
+// > 01000000015ad4ceb44e2fcbcd1aced1ca9d90493a67820c4fb4a65aa27de6eb157854cd6
+//   5000000006b483045022100c959d71157d9735d39b0206ce0f3a77dd639f4d234623afd27
+//   3892bdae36505002201f141d7c526bf2790be4501579709af123e3b2768e6f4d2922f927d
+//   49d75d882012103e91352e9a550480e2b9a96a5cf2948e5c84446054702b3de50e2c72520
+//   cec0deffffffff01b8820100000000001976a914ac7bc3be8c65e6dd1d26718c6ea501576
+//   bc40be088ac00000000
 
 // To issue the transaction to the Bitcoin network, submit it over at
 // https://blockchain.info/pushtx
@@ -105,7 +111,7 @@ console.log(tx.build().toHex())
 ```
 
 I followed this method to submit [this transaction](https://blockchain.info/tx/2abdca091859214e5df75990bd3bef043ddf0c0d824354d8581cf99d0217c55f)
-to the Bitcoin network. I was required to include a fee of 1000 Satoshis 
-due to the small amount 
-involved.
+to the Bitcoin network. For reference, the values above represent the actual values
+used in the transaction.
+I was required to include a fee of 1000 Satoshis due to the small amount involved.
 
